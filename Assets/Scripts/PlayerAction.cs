@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using FPS.Weapon;
 
-public class PlayerAction : MonoBehaviour
+namespace FPS.Player
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerAction : MonoBehaviour
     {
-        
-    }
+        [SerializeField] private Transform viewport;
+        [SerializeField] private GameObject bulltePrefab;
+        [SerializeField] private Transform bulletSpawnPoint;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        internal void Shoot(InputAction.CallbackContext _)
+        {
+            GameEvents.FireBulletShotEvent();
+            var bullet = Instantiate(bulltePrefab, bulletSpawnPoint.position, viewport.rotation).GetComponent<Bullet>();
+            bullet.ApplyVelocity(viewport.forward);
+        }
     }
 }

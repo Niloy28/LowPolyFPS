@@ -27,13 +27,20 @@ namespace FPS.Player
         private void SetupInputs()
         {
             inputs = new PlayerInputs();
+
             inputs.Movement.Move.performed += playerMovement.ReadRawMovementData;
             inputs.Movement.Move.canceled += playerMovement.StopPlayerMovement;
             inputs.Movement.Run.performed += playerMovement.SetPlayerToRun;
+            // disable shooting while running
+            inputs.Movement.Run.performed += ctx => inputs.Action.Shoot.performed -= playerAction.Shoot;
             inputs.Movement.Run.canceled += playerMovement.SetPlayerToWalk;
+            // enable shooting when walking
+            inputs.Movement.Run.canceled += ctx => inputs.Action.Shoot.performed += playerAction.Shoot;
             inputs.Movement.Jump.performed += playerMovement.PlayerJump;
 
             inputs.Camera.Look.performed += playerLook.Look;
+
+            inputs.Action.Shoot.performed += playerAction.Shoot;
         }
 
         private void OnEnable() => inputs.Enable();

@@ -164,6 +164,34 @@ namespace FPS.Input
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Action"",
+            ""id"": ""84b76bfa-b0d6-4d3e-ae54-11e735563a07"",
+            ""actions"": [
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""5324478c-c719-4087-b05c-dfddcdf8dcf4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d2bf5053-104b-4cb6-a78f-0d67144ed067"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""K&M"",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -193,6 +221,9 @@ namespace FPS.Input
             // Camera
             m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
             m_Camera_Look = m_Camera.FindAction("Look", throwIfNotFound: true);
+            // Action
+            m_Action = asset.FindActionMap("Action", throwIfNotFound: true);
+            m_Action_Shoot = m_Action.FindAction("Shoot", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -330,6 +361,39 @@ namespace FPS.Input
             }
         }
         public CameraActions @Camera => new CameraActions(this);
+
+        // Action
+        private readonly InputActionMap m_Action;
+        private IActionActions m_ActionActionsCallbackInterface;
+        private readonly InputAction m_Action_Shoot;
+        public struct ActionActions
+        {
+            private @PlayerInputs m_Wrapper;
+            public ActionActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Shoot => m_Wrapper.m_Action_Shoot;
+            public InputActionMap Get() { return m_Wrapper.m_Action; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(ActionActions set) { return set.Get(); }
+            public void SetCallbacks(IActionActions instance)
+            {
+                if (m_Wrapper.m_ActionActionsCallbackInterface != null)
+                {
+                    @Shoot.started -= m_Wrapper.m_ActionActionsCallbackInterface.OnShoot;
+                    @Shoot.performed -= m_Wrapper.m_ActionActionsCallbackInterface.OnShoot;
+                    @Shoot.canceled -= m_Wrapper.m_ActionActionsCallbackInterface.OnShoot;
+                }
+                m_Wrapper.m_ActionActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @Shoot.started += instance.OnShoot;
+                    @Shoot.performed += instance.OnShoot;
+                    @Shoot.canceled += instance.OnShoot;
+                }
+            }
+        }
+        public ActionActions @Action => new ActionActions(this);
         private int m_KMSchemeIndex = -1;
         public InputControlScheme KMScheme
         {
@@ -348,6 +412,10 @@ namespace FPS.Input
         public interface ICameraActions
         {
             void OnLook(InputAction.CallbackContext context);
+        }
+        public interface IActionActions
+        {
+            void OnShoot(InputAction.CallbackContext context);
         }
     }
 }

@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4622085585806733311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6529768228276349802}
+  m_Layer: 0
+  m_Name: Gun Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6529768228276349802
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4622085585806733311}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.104, y: -0.119, z: 0.921}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6688358837699146209}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4935958071319069372
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,6 +192,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f821a9a177f928e4c8b41645306b98d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  viewport: {fileID: 6688358837699146209}
+  bulltePrefab: {fileID: 656357997161827099, guid: b8998908a4f37d14aa1359919acbf06c, type: 3}
+  bulletSpawnPoint: {fileID: 6529768228276349802}
 --- !u!114 &4937733188379317529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +257,24 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &10333647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4936685797371593188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82409a4449563d04b93850c509dc75db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootingSound: {fileID: 8300000, guid: 38b450e2adcb6f542acc8c1d423bd8dc, type: 3}
+  bulletHitSounds:
+  - {fileID: 8300000, guid: fceb333e433c97e4497267e3c3a508c3, type: 3}
+  - {fileID: 8300000, guid: f49b461f95e0def45b1ad2a5a350e574, type: 3}
+  - {fileID: 8300000, guid: 091908a06d0b56143aaf6d3913444ab7, type: 3}
+  - {fileID: 8300000, guid: fd208dd7a0eafc84f82ad5fde72ab8fc, type: 3}
 --- !u!1001 &2917178006070556635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -236,7 +288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3355156599975803779, guid: 154500aa8261eb64f8eb55a14ffe7124, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8406592255976801850, guid: 154500aa8261eb64f8eb55a14ffe7124, type: 3}
       propertyPath: m_RootOrder
@@ -282,10 +334,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8979945398773662128, guid: 154500aa8261eb64f8eb55a14ffe7124, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 09b903c0628056e4399f32c339441137, type: 3}
+    m_RemovedComponents:
+    - {fileID: 7916987258002541133, guid: 154500aa8261eb64f8eb55a14ffe7124, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 154500aa8261eb64f8eb55a14ffe7124, type: 3}
 --- !u!4 &6688358837699146209 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8406592255976801850, guid: 154500aa8261eb64f8eb55a14ffe7124, type: 3}
+  m_PrefabInstance: {fileID: 2917178006070556635}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4936685797371593188 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7852382619276031551, guid: 154500aa8261eb64f8eb55a14ffe7124, type: 3}
   m_PrefabInstance: {fileID: 2917178006070556635}
   m_PrefabAsset: {fileID: 0}
