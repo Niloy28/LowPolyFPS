@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +5,7 @@ namespace FPS.Weapon
 {
     public class GunSoundPlayer : MonoBehaviour
     {
+        [SerializeField] private AudioClip gunTakeOutSound;
         [SerializeField] private AudioClip shootingSound;
         [SerializeField] private List<AudioClip> bulletHitSounds;
 
@@ -14,6 +14,11 @@ namespace FPS.Weapon
         private void Start()
         {
             audioSource = GetComponent<AudioSource>();
+        }
+
+        private void PlayGunTakeOutSound()
+        {
+            audioSource.PlayOneShot(gunTakeOutSound);
         }
 
         private void PlayShootingSound()
@@ -30,12 +35,11 @@ namespace FPS.Weapon
         private void OnEnable()
         {
             GameEvents.OnBulletHit += PlayBulletHitSound;
-            GameEvents.OnBulletShot += PlayShootingSound;
         }
 
         private void OnDisable()
         {
-
+            GameEvents.OnBulletHit -= PlayBulletHitSound;
         }
     }
 }

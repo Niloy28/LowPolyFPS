@@ -10,9 +10,16 @@ namespace FPS.Player
         [SerializeField] private GameObject bulltePrefab;
         [SerializeField] private Transform bulletSpawnPoint;
 
+        private Animator animator;
+
+        private void Awake()
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
+
         internal void Shoot(InputAction.CallbackContext _)
         {
-            GameEvents.FireBulletShotEvent();
+            animator.Play("Fire", 0, 0f);
             var bullet = Instantiate(bulltePrefab, bulletSpawnPoint.position, viewport.rotation).GetComponent<Bullet>();
             bullet.ApplyVelocity(viewport.forward);
         }

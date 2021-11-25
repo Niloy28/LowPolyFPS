@@ -12,6 +12,8 @@ namespace FPS.Player
         [Header("Handle Player Physics")]
         [SerializeField] private float gravity = -9.81f;
 
+        [SerializeField] private CharacterSoundPlayer characterSoundPlayer;
+
         private CharacterController characterController;
         private Animator animator;
         private Vector3 rawData;
@@ -33,6 +35,10 @@ namespace FPS.Player
                 MovePlayer();
             }
             AnimatePlayer();
+            if (characterController.velocity.magnitude < 0.01f)
+            {
+                characterSoundPlayer.StopMovementSound();
+            }
         }
 
         private void AnimatePlayer()

@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootVelocity: 20
+  bulletLifetime: 2
 --- !u!54 &4732926130757737433
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -63,8 +64,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &3902074671845646370
-MeshCollider:
+--- !u!136 &7233251070055483266
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -73,10 +74,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: e3e3b2d021fa80a488a48fcd984ef279, type: 3}
+  m_Radius: 0.0069477973
+  m_Height: 0.092111506
+  m_Direction: 1
+  m_Center: {x: -2.3283064e-10, y: 0.008117121, z: -0.000000013969842}
 --- !u!1001 &3520672303021317699
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -22,7 +22,6 @@ namespace FPS.Weapon
 
         public void ApplyVelocity(Vector3 velocityDir)
         {
-            Debug.Log(velocityDir);
             rigidBody.velocity = velocityDir * shootVelocity;
         }
 
