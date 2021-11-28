@@ -15,7 +15,7 @@
 /[Mm]emoryCaptures/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
-!/[Aa]ssets/**/*.meta
+!/[Aa]ssets/Scenes/**/*.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
@@ -94,3 +94,7 @@ InitTestScene*.unity
 
 /[Aa]ssets/Low Poly FPS Pack - Free (Sample)/
 /[Aa]ssets/Low Poly FPS Pack - Free (Sample).meta
+
+# ignore lightmap data
+/[Aa]ssets/Scenes/**/*.asset
+/[Aa]ssets/Scenes/**/*.meta
