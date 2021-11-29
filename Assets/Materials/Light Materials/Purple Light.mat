@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blue Light
+  m_Name: Purple Light
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -74,6 +74,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.53129226, g: 0.77845716, b: 0.9811321, a: 1}
-    - _EmissionColor: {r: 0.32325226, g: 1.2660713, b: 2.572549, a: 1}
+    - _Color: {r: 0.68326783, g: 0.19999996, b: 0.90588236, a: 1}
+    - _EmissionColor: {r: 3.417801, g: 0.26806283, b: 6.4, a: 1}
   m_BuildTextureStacks: []
