@@ -28,6 +28,7 @@ namespace FPS.Weapon
         private void OnCollisionEnter(Collision other)
         {
             GameEvents.FireBulletHitEvent();
+
             Destroy(gameObject);
         }
     }

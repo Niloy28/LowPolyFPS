@@ -9,6 +9,8 @@ namespace FPS
     {
         public static event Action OnBulletShot;
         public static event Action OnBulletHit;
+        public static event Action OnPlayerDetected;
+        public static event Action OnPlayerLost;
 
         public static void FireBulletShotEvent()
         {
@@ -18,6 +20,16 @@ namespace FPS
         public static void FireBulletHitEvent()
         {
             OnBulletHit?.Invoke();
+        }
+
+        public static void FirePlayerDetectedEvent()
+        {
+            OnPlayerDetected?.Invoke();
+        }
+
+        public static void FirePlayerLostEvent()
+        {
+            OnPlayerLost?.Invoke();
         }
     }
 }
