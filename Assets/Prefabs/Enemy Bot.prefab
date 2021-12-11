@@ -1194,7 +1194,7 @@ MonoBehaviour:
   raycastLayer:
     serializedVersion: 2
     m_Bits: 256
-  viewDistance: 5
+  viewDistance: 20
 --- !u!1 &7641806130919915171
 GameObject:
   m_ObjectHideFlags: 0
