@@ -9,6 +9,7 @@ namespace FPS.Enemy
         protected override void HandleDeath()
         {
             movement.DisableMovement();
+            GameManager.Instance.EnemiesKilled++;
             animator.Play("Die", 0);
         }
 

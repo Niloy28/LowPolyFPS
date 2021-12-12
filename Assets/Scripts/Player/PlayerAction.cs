@@ -18,6 +18,7 @@ namespace FPS.Player
 
         public int BulletsInMagazine => bulletsInMagazine;
         public int MagazineSize => magazineSize;
+        public int MaxAmmoCapacity => maxAmmoCapacity;
         public int CurrentAmmoCount
         {
             get => currentAmmoCount;
