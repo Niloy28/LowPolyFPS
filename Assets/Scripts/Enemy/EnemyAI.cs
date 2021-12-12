@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace FPS.Enemy
@@ -40,7 +38,7 @@ namespace FPS.Enemy
                     break;
                 case EnemyState.Pursue:
                     enemyMovement.Pursue(player);
-                    enemyAction.Shoot(player);
+                    enemyAction.PrepareToShoot(player);
                     break;
                 default:
                     break;
@@ -49,8 +47,16 @@ namespace FPS.Enemy
 
         private void FixedUpdate()
         {
-            Ray ray = new Ray(visor.position, visor.forward);
-            if (Physics.Raycast(ray, out _, viewDistance, raycastLayer))
+            // Ray ray = new Ray(visor.position, visor.forward);
+            // if (Physics.Raycast(ray, out _, viewDistance, raycastLayer))
+            // {
+            //     ChangeToPursueState();
+            // }
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (other.gameObject.CompareTag("PlayerAmmo"))
             {
                 ChangeToPursueState();
             }

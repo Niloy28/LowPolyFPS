@@ -3,7 +3,7 @@ using FPS.Input;
 
 namespace FPS.Player
 {
-    [RequireComponent(typeof(PlayerMovement), typeof(PlayerAction), typeof(PlayerLook))]
+    [RequireComponent(typeof(PlayerMovement), typeof(PlayerLook))]
     public class PlayerController : MonoBehaviour
     {
         private PlayerInputs inputs;
@@ -20,7 +20,7 @@ namespace FPS.Player
         private void CacheReferences()
         {
             playerMovement = GetComponent<PlayerMovement>();
-            playerAction = GetComponent<PlayerAction>();
+            playerAction = GetComponentInChildren<PlayerAction>();
             playerLook = GetComponent<PlayerLook>();
         }
 
@@ -41,6 +41,12 @@ namespace FPS.Player
             inputs.Camera.Look.performed += playerLook.Look;
 
             inputs.Action.Shoot.performed += playerAction.Shoot;
+            inputs.Action.Reload.performed += playerAction.Reload;
+        }
+
+        public void DisableInputs()
+        {
+            inputs.Disable();
         }
 
         private void OnEnable() => inputs.Enable();

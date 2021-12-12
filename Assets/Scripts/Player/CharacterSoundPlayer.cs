@@ -4,36 +4,67 @@ namespace FPS.Player
 {
     public class CharacterSoundPlayer : MonoBehaviour
     {
-        [SerializeField] private AudioSource characterAudioSource;
+        [Header("Character Audio Sources")]
+        [SerializeField] private AudioSource movementAudioSource;
+        [SerializeField] private AudioSource damageAudioSource;
         [Header("Movement Sounds")]
         [SerializeField] private AudioClip walkingSound;
         [SerializeField] private AudioClip runningSound;
+        [Header("Damage Sounds")]
+        [SerializeField] private AudioClip hitSound;
+        [SerializeField] private AudioClip deathSound;
 
         private void PlayWalkingSound()
         {
-            if (characterAudioSource.clip == walkingSound && characterAudioSource.isPlaying)
+            if (movementAudioSource.clip == walkingSound && movementAudioSource.isPlaying)
             {
                 return;
             }
-            characterAudioSource.Stop();
-            characterAudioSource.clip = walkingSound;
-            characterAudioSource.Play();
+            movementAudioSource.Stop();
+            movementAudioSource.clip = walkingSound;
+            movementAudioSource.Play();
         }
 
         private void PlayRunningSound()
         {
-            if (characterAudioSource.clip == runningSound && characterAudioSource.isPlaying)
+            if (movementAudioSource.clip == runningSound && movementAudioSource.isPlaying)
             {
                 return;
             }
-            characterAudioSource.Stop();
-            characterAudioSource.clip = runningSound;
-            characterAudioSource.Play();
+            movementAudioSource.Stop();
+            movementAudioSource.clip = runningSound;
+            movementAudioSource.Play();
         }
 
         public void StopMovementSound()
         {
-            characterAudioSource.Stop();
+            movementAudioSource.Stop();
+        }
+
+        private void PlayPlayerHitSound()
+        {
+            damageAudioSource.Stop();
+            damageAudioSource.clip = hitSound;
+            damageAudioSource.Play();
+        }
+
+        private void PlayPlayerDeathSound()
+        {
+            damageAudioSource.Stop();
+            damageAudioSource.clip = deathSound;
+            damageAudioSource.Play();
+        }
+
+        private void OnEnable()
+        {
+            GameEvents.OnPlayerDamaged += PlayPlayerHitSound;
+            GameEvents.OnPlayerDeath += PlayPlayerDeathSound;
+        }
+
+        private void OnDisable()
+        {
+            GameEvents.OnPlayerDamaged -= PlayPlayerHitSound;
+            GameEvents.OnPlayerDeath -= PlayPlayerDeathSound;
         }
     }
 }

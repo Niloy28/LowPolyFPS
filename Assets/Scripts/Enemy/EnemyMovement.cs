@@ -9,10 +9,6 @@ namespace FPS.Enemy
         [Header("Wander Params")]
         [SerializeField] private float wanderRadius = 2f;
         [SerializeField] private float wanderDelay = 2f;
-        [Header("Pursue Params")]
-        [SerializeField] private float singleStep = 0.3f;
-        [SerializeField] private float minDistanceFromPlayer = 2f;
-
 
         private NavMeshAgent agent;
         private Animator animator;
@@ -64,6 +60,7 @@ namespace FPS.Enemy
         private void FacePlayer(Transform player)
         {
             transform.LookAt(player);
+            transform.rotation = new Quaternion(0f, transform.rotation.y, 0f, transform.rotation.w);
         }
 
         private IEnumerator WaitBeforeNewWanderTarget(float wanderDelay)
@@ -76,6 +73,7 @@ namespace FPS.Enemy
         public void DisableMovement()
         {
             isMovementAllowed = false;
+            agent.isStopped = true;
         }
     }
 }

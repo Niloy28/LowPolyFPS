@@ -6,6 +6,8 @@ namespace FPS.Weapon
     public class GunSoundPlayer : MonoBehaviour
     {
         [SerializeField] private AudioClip gunTakeOutSound;
+        [SerializeField] private AudioClip reloadAmmoLeftSound;
+        [SerializeField] private AudioClip reloadOutOfAmmoSound;
         [SerializeField] private AudioClip shootingSound;
         [SerializeField] private List<AudioClip> bulletHitSounds;
 
@@ -32,14 +34,28 @@ namespace FPS.Weapon
             audioSource.PlayOneShot(soundToPlay);
         }
 
+        private void PlayReloadAmmoLeftSound()
+        {
+            audioSource.PlayOneShot(reloadAmmoLeftSound);
+        }
+
+        private void PlayReloadOutOfAmmoSound()
+        {
+            audioSource.PlayOneShot(reloadOutOfAmmoSound);
+        }
+
         private void OnEnable()
         {
             GameEvents.OnBulletHit += PlayBulletHitSound;
+            GameEvents.OnGunReloadAmmoLeft += PlayReloadAmmoLeftSound;
+            GameEvents.OnGunReloadOutOfAmmo += PlayReloadOutOfAmmoSound;
         }
 
         private void OnDisable()
         {
             GameEvents.OnBulletHit -= PlayBulletHitSound;
+            GameEvents.OnGunReloadAmmoLeft -= PlayReloadAmmoLeftSound;
+            GameEvents.OnGunReloadOutOfAmmo -= PlayReloadOutOfAmmoSound;
         }
     }
 }
