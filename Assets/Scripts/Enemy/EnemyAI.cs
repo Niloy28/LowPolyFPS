@@ -12,7 +12,6 @@ namespace FPS.Enemy
 
         private EnemyMovement enemyMovement;
         private EnemyAction enemyAction;
-        private EnemyHealth enemyHealth;
 
         private EnemyState enemyState;
         private Transform player;
@@ -47,11 +46,11 @@ namespace FPS.Enemy
 
         private void FixedUpdate()
         {
-            // Ray ray = new Ray(visor.position, visor.forward);
-            // if (Physics.Raycast(ray, out _, viewDistance, raycastLayer))
-            // {
-            //     ChangeToPursueState();
-            // }
+            Ray ray = new Ray(visor.position, visor.forward);
+            if (Physics.Raycast(ray, out _, viewDistance, raycastLayer))
+            {
+                ChangeToPursueState();
+            }
         }
 
         private void OnCollisionEnter(Collision other)

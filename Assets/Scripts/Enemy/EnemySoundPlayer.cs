@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace FPS.Enemy
@@ -7,8 +8,14 @@ namespace FPS.Enemy
     {
         [SerializeField] private AudioClip playerDetectedClip;
         [SerializeField] private AudioClip playerLostClip;
+        [SerializeField] private AudioClip gunShotSound;
 
         private AudioSource audioSource;
+
+        internal void DisableAllSound()
+        {
+            audioSource.Stop();
+        }
 
         private void Awake()
         {
@@ -25,6 +32,11 @@ namespace FPS.Enemy
         {
             audioSource.Stop();
             audioSource.PlayOneShot(playerLostClip);
+        }
+
+        private void PlayGunShotSound()
+        {
+            audioSource.PlayOneShot(gunShotSound, 0.1f);
         }
 
         private void OnEnable()

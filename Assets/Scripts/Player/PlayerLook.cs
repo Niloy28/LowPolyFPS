@@ -8,18 +8,8 @@ namespace FPS.Player
         [SerializeField] private Transform gunCamera;
         [SerializeField] private float mouseSensitivity = 10f;
         [SerializeField] private float upwardRotationLimit = 25f;
-        [SerializeField] private bool lockCursor;
 
         private float rotationAroundX;
-
-        private void Awake()
-        {
-            if (lockCursor)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
-        }
 
         internal void Look(InputAction.CallbackContext ctx)
         {

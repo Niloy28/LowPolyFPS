@@ -511,6 +511,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0
+        functionName: PlayGunShotSound
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 9ce385c273c216b43a7daf965d715dfc, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1

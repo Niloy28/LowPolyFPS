@@ -54,3 +54,7 @@ namespace FPS.Player
         private void OnDisable() => inputs.Disable();
     }
 }
+
+
+
+

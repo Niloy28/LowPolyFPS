@@ -25,7 +25,7 @@ namespace FPS.Player
         private IEnumerator DelayGameOver()
         {
             yield return new WaitForSeconds(1f);
-            LevelLoader.LoadGameOver();
+            LevelLoader.Instance.LoadGameOver();
         }
 
         protected override void HandleHit()
